@@ -1,12 +1,7 @@
+#referencia de la idea https://blog.cernera.me/converting-regular-expressions-to-postfix-notation-with-the-shunting-yard-algorithm/
 
 stack =[]
 output = []
-
-# Closure (Kleene star) a*
-# Concatenation ab
-# Union a+b
-
-# "(b|b)*?a?b?b?(a|b)*"
 
 def transform_postfix(c):
     print(c)
