@@ -1,5 +1,7 @@
+from asyncio.trsock import TransportSocket
 from thompson import *
+from postfix import *
 
-r ="(b|b)*abb(a|b)*"
+r ="(b|b)*?a?b?b?(a|b)*"
 
-lenguaje_regular(r)
+transform_postfix(r)
