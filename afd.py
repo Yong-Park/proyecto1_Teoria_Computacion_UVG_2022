@@ -1,3 +1,4 @@
+from queue import Empty
 import pandas as pd
 
 vc = "vacio"
@@ -40,8 +41,91 @@ def afd(afn, r, start):
                     reaching_state.append(k[2])
             afn_table[state][path] = reaching_state
                 
-    #mostrar tabla de e-afn               
+    #mostrar tabla de e-afn
+    print(afn_table)               
     tab = pd.DataFrame(afn_table)
     print(tab.transpose())
+    
+    #comenzando a convertirlo en afd
+    new_states_list = []                          
+    dfa = {}                                      
+    keys_list = list(afn_table.keys())[0]
+    path_list = list(afn_table[keys_list].keys())  
+    
+    dfa[keys_list] = {}
+    #para la primera fila
+    for x in path_list:
+        if afn_table[keys_list][eps] is not Empty:
+            if x is not eps:
+                if not afn_table[keys_list][x]:
+                    dfa[keys_list][x] = afn_table[keys_list][eps]
+                    if dfa[keys_list][x] not in new_states_list:
+                        new_states_list.append(dfa[keys_list][x])
+        else:
+            if x is not eps:
+                if len(x) > 1:
+                    dfa[keys_list][x] = afn_table[keys_list][x]
+                else:
+                    llave = []
+                    llave.extend(afn[keys_list][x])
+                    for bucle in range(len(q_list)):
+                        for letra in llave:
+                            if afn[letra][eps]:
+                                if afn[letra][eps] not in llave:
+                                    llave.extend(afn[letra][eps])
+                    dfa[keys_list][x] = llave
+                    if dfa[keys_list][x] not in new_states_list:
+                        new_states_list.append(dfa[keys_list][x])
+        
+            
+    #generar el resta de filas
+    q_list.pop(0)
+    while len(new_states_list) != 0:
+        #print("states:" + str(new_states_list))
+        dfa[str(new_states_list[0])] = {}
+        for _ in range(len(new_states_list[0])):
+            # print(new_states_list[0])
+            # print(len(new_states_list[0]))
+            if len(new_states_list[0]) > 1:
+                for i in path_list:
+                    if i is not eps:
+                        temp = []
+                        #print("columna:" + str(i))
+                        for j in range(len(new_states_list[0])):
+                            temp += afn_table[new_states_list[0][j]][i]
+                            #print("new cadena:" + str(temp))
+                        dfa[str(new_states_list[0])][i] = temp
+                        if temp not in new_states_list:
+                            new_states_list.append(temp)
+            else:
+                # print("================")
+                # print(afn_table[str(new_states_list[0][0])])
+                for i in path_list:
+                    if afn_table[str(new_states_list[0][0])][eps]:
+                        if i is not eps:
+                            if afn_table[str(new_states_list[0][0])][i]:
+                                temp = afn_table[str(new_states_list[0][0])][eps]
+                            else:
+                                temp = []
+                                #print("columna:" + str(i))
+                                for j in range(len(new_states_list[0])):
+                                    temp += afn_table[new_states_list[0][j]][i]
+                                    #print("new cadena:" + str(temp))
+                                dfa[str(new_states_list[0])][i] = temp
+                                if temp not in new_states_list:
+                                    new_states_list.append(temp)
+                    else:
+                        pass
 
-    return 1
+        # print("state:" + str(new_states_list))
+        lista = []
+        if len(q_list) > 0:
+            lista.append(q_list[0])
+            # print("lista:" + str(lista))
+            new_states_list.append(lista)
+            q_list.pop(0)
+        new_states_list.remove(new_states_list[0])
+           
+    print(dfa)
+    tab = pd.DataFrame(dfa)
+    print(tab.transpose())
