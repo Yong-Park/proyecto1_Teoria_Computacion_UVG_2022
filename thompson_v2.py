@@ -143,8 +143,8 @@ def construccion_thompson(output):
             
             back.pop(len(back)-1)
             
-    print("afn:" + str(afn))
+    # print("afn:" + str(afn))
     # print("back:" + str(back))
     # print("cadena:" + str(cadena))
     
-    return 1
+    return afn
