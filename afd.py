@@ -1,6 +1,9 @@
 #librerias
-from queue import Empty
 import pandas as pd
+import graphviz
+import os
+
+os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
 
 #variables
 vc = "vacio"
@@ -46,7 +49,7 @@ def afd(afn, r, start):
                 
     #mostrar tabla de e-afn
     print("Tabla afn")
-    print(afn_table)               
+    # print(afn_table)               
     tab = pd.DataFrame(afn_table)
     print(tab.transpose())
     
@@ -60,7 +63,7 @@ def afd(afn, r, start):
     dfa[keys_list] = {}
     #para la primera fila
     for x in path_list:
-        if afn_table[keys_list][eps] is not Empty:
+        if afn_table[keys_list][eps]:
             if x is not eps:
                 if not afn_table[keys_list][x]:
                     llave = []
@@ -175,3 +178,18 @@ def afd(afn, r, start):
     print(dfa)
     tab = pd.DataFrame(dfa)
     print(tab.transpose())
+    
+    #mostrar su grafo
+    f = graphviz.Digraph(comment = "afd")
+    names = []
+    for i in all_states_list:
+        names.append(i)
+    for name in zip(names):
+        f.node(str(name))
+    for l in dfa:
+        for v in dfa[l]:
+            f.edge(str(l),str(dfa[l][v]),label = str(v))
+        
+    f.render("afd", view = True)
+        
+    
