@@ -53,6 +53,19 @@ def afd(afn, r, start):
     tab = pd.DataFrame(afn_table)
     print(tab.transpose())
     
+    #mostrar su grafo
+    f = graphviz.Digraph(comment = "afd")
+    names = []
+    for i in q_list:
+        names.append(i)
+    for name in zip(names):
+        f.node(str(name))
+    for l in afn:
+        print(l)
+        f.edge(str(l[0]),str(l[2]),label = str(l[1]))
+        
+    f.render("afn", view = True)
+    
     #comenzando a convertirlo en afd
     new_states_list = []    
     all_states_list = []                      
