@@ -33,4 +33,4 @@ def transform_postfix(c):
     # print("stack: " + str(stack))
     
     #convertir el postfix a afd
-    return construccion_thompson(output)
+    return output
