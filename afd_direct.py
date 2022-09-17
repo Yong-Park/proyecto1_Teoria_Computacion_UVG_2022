@@ -5,7 +5,6 @@ def afd_directo(postfix):
     
     postfix.reverse()
 
-    if 
                 
                      
     return 1
