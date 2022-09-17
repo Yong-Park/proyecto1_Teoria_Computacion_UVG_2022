@@ -76,7 +76,6 @@ def construccion_thompson(output):
             back.pop(len(back)-1)
         
         elif back[len(back)-1] == "?":
-            
             if len(back) == 2:
                 chain.append(cadena[len(cadena) - 1][len(cadena[len((cadena))-1]) -1][2])
                 chain.append(back[len(back)-2])

@@ -10,16 +10,21 @@ def transform_postfix(c):
     for l in c:
         if l == "|" or l == "(" or l == ")" or l == "*" or l == "?":
             stack.append(l)
+            print("s: " + str(stack))
+            print("o: " + str(output))
             if ")" in stack:
-                output.append(stack[stack.index(")")-1])
+                if stack[stack.index(")")-1] == "(":
+                    output.append(stack[stack.index(")")-2])
+                else:
+                    output.append(stack[stack.index(")")-1])
                 stack.pop(stack.index(")")-1)
-                stack.remove("(")
+                stack.pop(stack.index(")")-1)
                 stack.remove(")")
             if l == "?":
                 if "*" in stack:
                     output.append(stack[stack.index("*")])
                     stack.pop(stack.index("*"))
-                elif "?" in stack:
+                elif stack.count("?") > 1:
                     output.append(stack[len(stack)-1])
                     stack.pop(len(stack)-1)             
         else:
@@ -29,8 +34,8 @@ def transform_postfix(c):
         output.append(stack[len(stack)-1])
         stack.pop(len(stack)-1)       
     
-    # print("output: " + str(output))
-    # print("stack: " + str(stack))
+    print("output: " + str(output))
+    print("stack: " + str(stack))
     
     #convertir el postfix a afd
     return output
