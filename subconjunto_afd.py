@@ -1,4 +1,5 @@
 #librerias
+from turtle import shape
 import pandas as pd
 import graphviz
 import os
@@ -21,6 +22,10 @@ for i in range(100):
     q.append(value)
 
 def afd_construction(afn, r, start, end):
+    #recibiendo el inicio y el de aceptacion
+    inicio = start
+    final = end
+    
     #guardar solo los lenguajes
     for l in r:
         if l != "(" and l !=")" and l !="*" and l !="?" and l !="|": 
@@ -55,13 +60,22 @@ def afd_construction(afn, r, start, end):
     
     #mostrar su grafo
     f = graphviz.Digraph(comment = "afd")
+    inicio_listo = True
+    
     names = []
     for i in q_list:
         names.append(i)
-    for name in zip(names):
-        f.node(str(name))
+    for name in names:
+        if name == final:
+            f.node(str(name), shape="doublecircle")
+        else:
+            f.node(str(name))
+    f.node("", shape="plaintext")
     for l in afn:
-        print(l)
+        if inicio in l:
+            if(inicio_listo):
+                f.edge("",str(l[0]),label = "")
+                inicio_listo = False
         f.edge(str(l[0]),str(l[2]),label = str(l[1]))
         
     f.render("afn", view = True)
@@ -70,9 +84,6 @@ def afd_construction(afn, r, start, end):
     all_subconjuntos = []
     subconjuntos = []
     afd = {}
-    inicio = start
-    final = end
-    
     largo_sub = 0
     
     #iniciar a llenar el primero para el afd
@@ -121,11 +132,19 @@ def afd_construction(afn, r, start, end):
     names = []
     for i in all_subconjuntos:
         names.append(i)
-    for name in zip(names):
-        f.node(str(name))
-    for l in afd:
-        for v in afd[l]:
+    for name in names:
+        if final in list(name):
+            f.node(str(name),shape="doublecircle")
+        else:
+            f.node(str(name))
+        
+    f.node("", shape="plaintext")
+    for l in afd: #los nodos
+        if inicio in l:
+            f.edge("",str(l),label="")
+        for v in afd[l]: #sus variables                
             f.edge(str(l),str(afd[l][v]),label = str(v))
+        
         
     f.render("afd", view = True)
 
