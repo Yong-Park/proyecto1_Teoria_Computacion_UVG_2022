@@ -1,7 +1,7 @@
 
 eps = "epsilon"
 q = []
-
+afn_control = []
 afn = []
 
 cadena = []
@@ -14,10 +14,12 @@ for i in range(100):
     q.append(value)
 
 def construccion_thompson(output):
+    print(output)
     lista = []
     chain = []
     for l in output:
         back.append(l)
+        print(back)
         if back[len(back)-1] == "|":
             chain.append(q[0])
             chain.append(eps)
@@ -142,7 +144,7 @@ def construccion_thompson(output):
             
             back.pop(len(back)-1)
             
-    # print("afn:" + str(afn))
+    print("afn:" + str(afn))
     # print("back:" + str(back))
     # print("cadena:" + str(cadena))
     
