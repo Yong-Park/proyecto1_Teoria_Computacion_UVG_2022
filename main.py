@@ -5,7 +5,7 @@ from afd_direct import *
 from subconjunto_afd import *
 
 r ="(b|b)*?a?b?b?(a|b)*"
-# r = "(a|b)?(a?b?b?a|(a?b)*?b?a)"
+#r = "(a|b)?(a?b?b?a|(a?b)*?b?a)"
 
 
 postfix = transform_postfix(r)

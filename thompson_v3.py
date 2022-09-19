@@ -4,6 +4,7 @@ q = []
 afn_control = []
 afn = []
 
+cadena_fl = []
 cadena = []
 back = []
 
@@ -24,17 +25,17 @@ def construccion_thompson(output):
         print(afn)
         print("cadena: " + str(cadena))
         print(back)
-        print(first, last)
+        print(cadena_fl)
         if back[len(back)-1] == "|":
             if len(cadena) > 1 and len(back) == 1:
                 chain.append(q[0])
                 chain.append(eps)
-                chain.append(cadena[len(cadena)-2][0][0])
+                chain.append(cadena_fl[len(cadena_fl)-2][0])
                 lista.append(chain)
                 afn.append(chain)
                 chain = []
                 
-                chain.append(cadena[len(cadena)-2][len(cadena[len(cadena)-2])-1][2])
+                chain.append(cadena_fl[len(cadena_fl)-2][1])
                 chain.append(eps)
                 chain.append(q[1])
                 lista.append(chain)
@@ -43,12 +44,12 @@ def construccion_thompson(output):
                 
                 chain.append(q[0])
                 chain.append(eps)
-                chain.append(first)
+                chain.append(cadena_fl[len(cadena_fl)-1][0])
                 lista.append(chain)
                 afn.append(chain)
                 chain = []
                 
-                chain.append(cadena[len(cadena)-1][len(cadena[len(cadena)-1])-1][2])
+                chain.append(cadena_fl[len(cadena_fl)-1][1])
                 chain.append(eps)
                 chain.append(q[1])
                 lista.append(chain)
@@ -57,12 +58,21 @@ def construccion_thompson(output):
                 
                 cadena.pop(len(cadena)-1)
                 cadena.pop(len(cadena)-1)
+                
+                cadena_fl.pop(len(cadena_fl)-1)
+                cadena_fl.pop(len(cadena_fl)-1)
 
                 cadena.append(lista)
                 lista = []
                 
                 first = q[0]
                 last = q[1]
+                
+                fl = []
+                fl.append(first)
+                fl.append(last)
+                
+                cadena_fl.append(fl)
                 
                 q.pop(0)
                 q.pop(0)
@@ -117,6 +127,12 @@ def construccion_thompson(output):
                 first = q[0]
                 last = q[3]
                 
+                fl = []
+                fl.append(first)
+                fl.append(last)
+                
+                cadena_fl.append(fl)
+                
                 q.pop(0)
                 q.pop(0)
                 q.pop(0)
@@ -152,6 +168,12 @@ def construccion_thompson(output):
                         first = q[0]
                         last = q[2]
                         
+                        fl = []
+                        fl.append(first)
+                        fl.append(last)
+                        
+                        cadena_fl.append(fl)
+                        
                         q.pop(0)
                         q.pop(0)
                         q.pop(0)
@@ -161,7 +183,7 @@ def construccion_thompson(output):
                         back.pop(len(back)-1)
                     
                 else:
-                    chain.append(last)
+                    chain.append(cadena_fl[len(cadena_fl)-1][1])
                     chain.append(back[len(back)-2])
                     chain.append(q[0])
                     lista.append(chain)
@@ -173,6 +195,12 @@ def construccion_thompson(output):
                     
                     last = q[0]
                     
+                    fl = []
+                    fl.append(first)
+                    fl.append(last)
+                    
+                    cadena_fl[len(cadena_fl)-1]=(fl)
+                    
                     q.pop(0)
                         
                     back.pop(len(back)-1)
@@ -180,13 +208,19 @@ def construccion_thompson(output):
             else:
                 chain.append(cadena[len(cadena)-2][len(cadena[len(cadena)-2])-1][2])
                 chain.append(eps)
-                chain.append(first)
+                chain.append(cadena_fl[len(cadena_fl)-1][0])
                 lista.append(chain)
                 afn.append(chain)
                 chain = []
                 
                 cadena[len(cadena)-1].extend(lista)
                 lista = []
+                
+                fl = []
+                fl.append(first)
+                fl.append(last)
+                    
+                cadena_fl[len(cadena_fl)-1]=(fl)
                 
                 q.pop(0)
                     
@@ -195,7 +229,7 @@ def construccion_thompson(output):
         elif back[len(back)-1] == "*":
             chain.append(q[0])
             chain.append(eps)
-            chain.append(first)
+            chain.append(cadena_fl[len(cadena_fl)-1][0])
             lista.append(chain)
             afn.append(chain)
             chain = []
@@ -207,14 +241,14 @@ def construccion_thompson(output):
             afn.append(chain)
             chain = []
             
-            chain.append(last)
+            chain.append(cadena_fl[len(cadena_fl)-1][1])
             chain.append(eps)
-            chain.append(first)
+            chain.append(cadena_fl[len(cadena_fl)-1][0])
             lista.append(chain)
             afn.append(chain)
             chain = []
             
-            chain.append(last)
+            chain.append(cadena_fl[len(cadena_fl)-1][1])
             chain.append(eps)
             chain.append(q[1])
             lista.append(chain)
@@ -226,6 +260,12 @@ def construccion_thompson(output):
             
             first = q[0]
             last = q[1]
+            
+            fl = []
+            fl.append(first)
+            fl.append(last)
+                    
+            cadena_fl[len(cadena_fl)-1]=(fl)
             
             q.pop(0)
             q.pop(0)
