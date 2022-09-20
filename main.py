@@ -7,7 +7,7 @@ from simulation import *
 
 cadena = []
 r ="(b|b)*?a?b?b?(a|b)*"
-w = "ba"
+w = "babbaaaaa"
 #r = "(a|b)?(a?b?b?a|(a?b)*?b?a)"
 
 for a in w:
@@ -21,4 +21,4 @@ afn = afn_afd_recieved[0]
 afd = afn_afd_recieved[1]
 
 simulacion_afn(afn,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
-#simulacion_afd(afd,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
+simulacion_afd(afd,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
