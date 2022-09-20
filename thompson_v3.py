@@ -16,16 +16,16 @@ for i in range(100):
 def construccion_thompson(output):
     last = ""
     first = ""
-    print(output)
+    # print(output)
     lista = []
     chain = []
     for l in output:
         back.append(l)
-        print("===========")
-        print(afn)
-        print("cadena: " + str(cadena))
-        print(back)
-        print(cadena_fl)
+        # print("===========")
+        # print(afn)
+        # print("cadena: " + str(cadena))
+        # print(back)
+        # print(cadena_fl)
         if back[len(back)-1] == "|":
             if len(cadena) > 1 and len(back) == 1:
                 chain.append(q[0])
@@ -272,8 +272,8 @@ def construccion_thompson(output):
             
             back.pop(len(back)-1)
             
-    print("afn:" + str(afn))
+    # print("afn:" + str(afn))
     # print("back:" + str(back))
     # print("cadena:" + str(cadena))
     
-    return afn
+    return [afn,cadena_fl]

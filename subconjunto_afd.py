@@ -147,6 +147,8 @@ def afd_construction(afn, r, start, end):
         
         
     f.render("afd", view = True)
+    
+    return [afn_table,afd]
 
 
     
