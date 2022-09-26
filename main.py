@@ -15,8 +15,10 @@ for a in w:
 
 postfix = transform_postfix(r)
 
+
 afn_recieved = construccion_thompson(postfix)
 afn_afd_recieved = afd_construction(afn_recieved[0],r,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
+afd_directo(afn_recieved, postfix)
 afn = afn_afd_recieved[0]
 afd = afn_afd_recieved[1]
 

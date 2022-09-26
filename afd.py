@@ -3,7 +3,8 @@ import pandas as pd
 import graphviz
 import os
 
-os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
+# os.environ["PATH"] += os.pathsep + 'D:/Program Files (x86)/Graphviz2.38/bin/'
+os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
 #variables
 vc = "vacio"

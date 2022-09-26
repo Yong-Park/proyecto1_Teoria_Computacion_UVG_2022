@@ -1,0 +1,8 @@
+// afd
+digraph {
+	Inicio
+	67
+	"" [shape=plaintext]
+	"['q0', 'epsilon', 'q1']" -> "['q1', 'b', 'q2']" [label="['q1', 'b', 'q2']"]
+	"['q6', 'q10']" -> "['q17', 'q18']" [label="['q17', 'q18']"]
+}
