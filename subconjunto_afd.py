@@ -150,7 +150,7 @@ def afd_construction(afn, r, start, end):
         
     f.render("afd", view = True)
     
-    return [afn_table,afd]
+    return [afn_table,afd, all_subconjuntos]
 
 
     

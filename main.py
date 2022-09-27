@@ -4,6 +4,7 @@ from thompson_v3 import *
 from afd_direct import *
 from subconjunto_afd import *
 from simulation import *
+from afd_minimization import *
 
 cadena = []
 r ="(b|b)*?a?b?b?(a|b)*"
@@ -24,3 +25,14 @@ afd = afn_afd_recieved[1]
 
 simulacion_afn(afn,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
 simulacion_afd(afd,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
+
+print(afd)
+print("==================================================================")
+print("==================================================================")
+print("==================================================================")
+print("==================================================================")
+print("==================================================================")
+print("==================================================================")
+print("==================================================================")
+
+minimizeAfd(afd, afn_afd_recieved, afn_recieved[1][len(afn_recieved)-1][1])
