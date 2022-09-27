@@ -1,7 +1,7 @@
 #from postfix import *
 from postfix_v2 import *
 from thompson_v3 import *
-from afd_directV2 import *
+from afd_directV2 import AFDD
 from direct_lector import DirectReader
 from direct_parser import Parser
 from subconjunto_afd import *
@@ -55,7 +55,7 @@ direct_parser = Parser(direct_tokens)
 direct_tree = direct_parser.Parse()
 
 regex_input = "(b|b)*?a?b?b?(a|b)*"
-ddfa = DDFA(
+ddfa = AFDD(
 direct_tree, direct_reader.GetSymbols(), regex_input)
 ddfa_regex = ddfa.EvalRegex()
 ddfa.GraphDFA()

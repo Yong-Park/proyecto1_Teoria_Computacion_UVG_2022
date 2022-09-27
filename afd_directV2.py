@@ -1,12 +1,11 @@
 from pythomata import SimpleDFA
 from graphviz import Digraph
-from utils import WriteToFile
 from pprint import pprint
 
 RAW_STATES = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
-class DDFA:
+class AFDD:
     def __init__(self, tree, symbols, regex):
 
         # Arbol Sintactico
@@ -230,7 +229,7 @@ class DDFA:
         graph.attr(rankdir='LR')
 
         source = graph.source
-        WriteToFile('DirectDFA.gv', source)
+        # WriteToFile('DirectDFA.gv', source)
         graph.render('DirectDFA.gv', format='pdf', view=True)
 
 
@@ -244,7 +243,7 @@ class Node:
         self.value = value
         self.c1 = c1
         self.c2 = c2
-
+        
     def __repr__(self):
         return f'''
     id: {self._id}
