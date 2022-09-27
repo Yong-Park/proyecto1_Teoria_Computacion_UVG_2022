@@ -1,6 +1,7 @@
 from direct_tokens import TokenType
 from direct_nodes import *
 
+#Parseador de expresiones para utilizar en AFD_DirectV2
 class Parser:
     def __init__(self, tokens):
         self.tokens = iter(tokens)

@@ -218,6 +218,7 @@ class AFDD:
 
         return 'Yes' if curr_state in self.accepting_states else 'No'
 
+    #Graficador de AFD Directo
     def GraphDFA(self):
         states = set(self.trans_func.keys())
         alphabet = set(self.symbols)
@@ -229,10 +230,10 @@ class AFDD:
         graph.attr(rankdir='LR')
 
         source = graph.source
-        # WriteToFile('DirectDFA.gv', source)
-        graph.render('DirectDFA.gv', format='pdf', view=True)
+        graph.render('AFDdirecto', format='pdf', view=True)
 
 
+#Clase representando los nodos del diagrama
 class Node:
     def __init__(self, _id, firstpos=None, lastpos=None, nullable=False, value=None, c1=None, c2=None):
         self._id = _id

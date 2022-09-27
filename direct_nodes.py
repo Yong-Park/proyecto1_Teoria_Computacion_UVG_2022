@@ -1,3 +1,5 @@
+#Clases que representaran los nodos en el AFD Directo
+
 class Letter:
     def __init__(self, value):
         self.value = value

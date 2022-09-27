@@ -2,7 +2,7 @@ from direct_tokens import Token, TokenType
 
 LETTERS = 'abcdefghijklmnopqrstuvwxyz01234567890.'
 
-
+#Clase para leer expresion regular y asignar los caracteres como tokens
 class DirectReader:
 
     def __init__(self, string: str):
@@ -17,6 +17,7 @@ class DirectReader:
         except StopIteration:
             self.curr_char = None
 
+    #Chequeo de tipo de token y creacion
     def CreateTokens(self):
         while self.curr_char != None:
 
@@ -26,7 +27,6 @@ class DirectReader:
 
                 self.Next()
 
-                # Finally, check if we need to add an append token
                 if self.curr_char != None and \
                         (self.curr_char in LETTERS or self.curr_char == '('):
                     yield Token(TokenType.APPEND, '.')
@@ -93,5 +93,6 @@ class DirectReader:
         yield Token(TokenType.APPEND, '.')
         yield Token(TokenType.LETTER, '#')
 
+    #Getter de simbolo
     def GetSymbols(self):
         return self.input

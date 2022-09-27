@@ -1,5 +1,6 @@
 from enum import Enum
 
+#Clase de tipos de token
 class TokenType(Enum):
     LETTER = 0 #ABC...
     APPEND = 1
@@ -10,6 +11,7 @@ class TokenType(Enum):
     LPAR = 6 #(
     RPAR = 7 #)
 
+#Clase que maneja los tokens
 class Token:
     def __init__(self, type: TokenType, value=None):
         self.type = type
