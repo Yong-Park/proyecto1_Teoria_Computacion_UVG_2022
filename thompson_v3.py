@@ -24,7 +24,7 @@ def construccion_thompson(output):
         # print("===========")
         # print(afn)
         # print("cadena: " + str(cadena))
-        # print(back)
+        # print("back: ", back)
         # print(cadena_fl)
         if back[len(back)-1] == "|":
             if len(cadena) > 1 and len(back) == 1:
@@ -275,5 +275,6 @@ def construccion_thompson(output):
     # print("afn:" + str(afn))
     # print("back:" + str(back))
     # print("cadena:" + str(cadena))
+    # print(cadena_fl)
     
     return [afn,cadena_fl]

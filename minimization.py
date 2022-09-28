@@ -75,6 +75,18 @@ def minimization(afd, inicio, final):
         
     print("\nTabla afd minimizado")
     print(P0)
+    
+    #transformacion de la tabla de afd normal
+    for x in P0:
+        if len(x)>1:
+            for y in x[1:]:
+                for xx in P0:
+                    for yy in xx:
+                        for val in transaction:
+                            if str(afd[yy][val]) == str(y):
+                                afd[yy][val] = x[0]
+    tab = pd.DataFrame(afd)
+    print(tab.transpose())
             
     #construcion de su tabla
     for x in P0:
