@@ -9,12 +9,14 @@ from simulation import *
 from minimization import *
 
 cadena = []
-#r ="(b|b)*?a?b?b?(a|b)*"
+r ="(b|b)*?a?b?b?(a|b)*"
 w = "babbaaaaa"
 #r = "a?(a|b)*"
+#w = "abba"
 #r = "(0|1)*?0?0"
-r = "(a|b)?(a?b?b?a|(a?b)*?b?a)"
-
+#w = "00"
+#r = "(a|b)?(a?b?b?a|(a?b)*?b?a)"
+#w = "aa"
 for a in w:
     cadena.append(a)
 #transformacion en postfix
@@ -47,5 +49,5 @@ ddfa.GraphDFA()
 
 
 #simulacion respecto a la cadena
-# simulacion_afn(afn,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
-# simulacion_afd(afd,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved)-1][1])
+simulacion_afn(afn,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved[1])-1][1])
+simulacion_afd(afd,cadena,afn_recieved[1][0][0],afn_recieved[1][len(afn_recieved[1])-1][1])

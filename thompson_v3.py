@@ -16,7 +16,7 @@ for i in range(100):
 def construccion_thompson(output):
     last = ""
     first = ""
-    # print(output)
+    print(output)
     lista = []
     chain = []
     for l in output:
